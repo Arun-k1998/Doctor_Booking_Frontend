@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import api from "../../../helper/axios/userAxios";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineEye } from "react-icons/ai";
-
+import Cookies from "js-cookie";
 function UserLogin() {
   const initialValues = { email: "", password: "" };
   const [formValues, setFormValues] = useState(initialValues);
@@ -22,8 +22,7 @@ function UserLogin() {
         let date = new Date();
         date.setTime(date.getTime() + 1 * 24 * 60 * 60 * 1000);
         const expires = "expires=" + date.toUTCString();
-        document.cookie =
-          "token=Bearer " + response.data.token + ";" + expires + "; path=/";
+        Cookies.set('user',response.data.token,{expires:1,path:'/'})
         navigate("/");
       } else {
         alert(response.data.message);

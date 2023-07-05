@@ -17,8 +17,8 @@ export default function validation(values){
         error.email = "Enter the correct format example@gmai.com"
     }
 
-    if(!values.countryCode){
-        error.countryCode = 'select country code'
+    if(!values. country_code){
+        error. country_code = 'select country code'
     }
     if(!values.phoneNumber){
         error.phoneNumber = 'Enter Phone number'

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import api from "../../../helper/axios/userAxios";
 import { useNavigate } from "react-router-dom";
-
+import Cookies from "js-cookie";
 
 function AdminLogin() {
   const initialValues = { email: "", password: "" };
@@ -14,8 +14,15 @@ function AdminLogin() {
 
   const handleSubmit = () => {
     api.post("/admin/login",formValues).then((response) => {
-        
-        navigate('/admin/dashboard')
+        if(response.status == 200){
+          let date = new Date()
+          date.setTime(date.getTime()+1*24*60*60*1000)
+          let expires = 'expires='+date.toUTCString()
+          // document.cookie = "adminToken=Bearer "+response.data.token+';'+expires+'; path=/admin'
+          Cookies.set('admin',response.data.token,{expires:1})
+          navigate('/admin/dashboard')
+        }
+       
     }).catch(({response})=>{
         console.log(response.data.message);
     })
