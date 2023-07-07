@@ -81,6 +81,7 @@ function Signup() {
   };
 
   return (
+    //resend otp with import form component
     <div className=" flex justify-center items-center h-screen w-full  bg-login-signup ">
       {otp && (
         <div className="md:w-[50%] lg:w-[25%] h-max-h-fit bg-cyan-100 p-4 flex flex-col justify-center items-center rounded-2xl shadow-2xl text-center ">

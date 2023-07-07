@@ -22,7 +22,7 @@ function Banner() {
       >
         Create Banner
       </button>
-      <div className="mt-36 ml-20 flex grid grid-cols-4 gap-4 text-center">
+      <div className="mt-36 ml-20 flex grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
         {banner.map((data, index) => {
           return (
             <div

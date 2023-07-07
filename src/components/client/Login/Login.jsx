@@ -3,12 +3,14 @@ import api from "../../../helper/axios/userAxios";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineEye } from "react-icons/ai";
 import Cookies from "js-cookie";
+import { useDispatch } from "react-redux";
+import { userLogin } from "../../../redux/userSlice";
 function UserLogin() {
   const initialValues = { email: "", password: "" };
   const [formValues, setFormValues] = useState(initialValues);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-
+  const dispatch = useDispatch() 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -22,7 +24,10 @@ function UserLogin() {
         let date = new Date();
         date.setTime(date.getTime() + 1 * 24 * 60 * 60 * 1000);
         const expires = "expires=" + date.toUTCString();
-        Cookies.set('user',response.data.token,{expires:1,path:'/'})
+         document.cookie = "userToken=Bearer "+response.data.token+';'+expires+'; path=/'
+        // Cookies.set('user','Bearer '+response.data.token,{expires:1,path:'/'})
+        const{firstName,_id,email} = response.data.user
+        dispatch(userLogin({firstName,_id,email}))
         navigate("/");
       } else {
         alert(response.data.message);
@@ -30,8 +35,8 @@ function UserLogin() {
     });
   };
   return (
-    <div className="flex justify-center items-center h-screen bg-teal-200 ">
-      <div className="flex flex-col justify-center text-center bg-teal-400 rounded-2xl sm:w-2/5 shadow-lg py-5  px-16 ">
+    <div className="flex justify-center items-center h-screen bg-login-signup ">
+      <div className="flex flex-col justify-center text-center bg-transparent rounded-2xl sm:w-2/5 shadow-lg py-5  px-16 ">
         <h2 className="text-3xl font-serif ">Login</h2>
 
         <input
