@@ -36,7 +36,7 @@ function UserLogin() {
   };
   return (
     <div className="flex justify-center items-center h-screen bg-login-signup ">
-      <div className="flex flex-col justify-center text-center bg-transparent rounded-2xl sm:w-2/5 shadow-lg py-5  px-16 ">
+      <div className="flex flex-col justify-center text-center backdrop-blur-sm bg-white/30 rounded-2xl sm:w-2/5 shadow-lg py-5  px-16 ">
         <h2 className="text-3xl font-serif ">Login</h2>
 
         <input

@@ -8,7 +8,7 @@ function BannerUpload() {
   return (
     <div>
         <AdminNavbar />
-        <div className='flex w-full bg-sky-50 h-[93vh]'>
+        <div className='grid grid-cols-[1fr_7fr] sm:grid-cols-[1.5fr_8.5fr] w-full'>
             <Sidebar />
             <div className='flex w-full justify-center items-center '>
             <BannerCreatoin />

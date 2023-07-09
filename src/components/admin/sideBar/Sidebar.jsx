@@ -10,7 +10,7 @@ function Sidebar() {
   const navigate = useNavigate();
 
   return (
-    <div className="h-[93.1vh] bg-sky-700 py-4 w-1/6 pt-16  font-serif ">
+    <div className="h-[93.1vh] w-full bg-[#189AB4] py-4 pt-16  font-serif ">
       <div className="h-14 bg-slate-400 flex items-center justify-center pl-4 md:justify-start text-sm lg:text-lg hover:bg-sky-800">
         <MdSpaceDashboard className="mr-1" />
         <p className="hidden md:block">Dashboard</p>
@@ -21,7 +21,7 @@ function Sidebar() {
       </div>
       <div className="h-14 flex items-center justify-center pl-4  md:justify-start text-sm lg:text-lg hover:bg-sky-800">
         <BiSolidUser className="mr-1" />
-        <p className="hidden md:block">Patients</p>
+        <p className="hidden md:block">Users</p>
       </div>
       <div className="h-14 flex items-center justify-center text-sm lg:text-lg pl-4 md:justify-start hover:bg-sky-800">
         <MdOutlineSettingsApplications className="mr-1" />

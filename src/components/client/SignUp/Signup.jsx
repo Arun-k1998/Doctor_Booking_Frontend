@@ -119,7 +119,7 @@ function Signup() {
 
       {!otp && (
         <div className=" flex flex-col  justify-center">
-          <div className="max-w-[900px] w-ful mx-auto bg-transparent shadow-2xl p-8 rounded-lg font-serif">
+          <div className="max-w-[900px] w-ful mx-auto backdrop-blur-sm bg-white/30 shadow-2xl p-8 rounded-lg font-serif">
             <p className="text-3xl font-bold ">Create Account</p>
             <div className="formInput mb-2 flex flex-col w-72 ">
               <label htmlFor="">First name</label>
