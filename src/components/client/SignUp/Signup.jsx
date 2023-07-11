@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import validation from "../../../helper/formValidation";
 import api from "../../../helper/axios/userAxios";
 import { useNavigate } from "react-router-dom";
+import Toggle from "../../../assets/Toggle/Toggle";
 
 function Signup() {
   const initialValues = {
@@ -28,7 +29,7 @@ function Signup() {
   };
 
   const handleSubmit = () => {
-    setformError(validation(formValues));
+    setformError(validation(formValues, "signUp"));
     setSubmit(true);
   };
 
@@ -40,14 +41,19 @@ function Signup() {
     });
   };
 
-  const resendOTP = ()=>{
-    api.post('/resendotp',{phoneNumber:formValues.phoneNumber,country_code:formValues.country_code}).then((response)=>{
-      if(response.data.status){
-        log(response.data.message);
-        setTimer(60)
-      }
-    })
-  }
+  const resendOTP = () => {
+    api
+      .post("/resendotp", {
+        phoneNumber: formValues.phoneNumber,
+        country_code: formValues.country_code,
+      })
+      .then((response) => {
+        if (response.data.status) {
+          log(response.data.message);
+          setTimer(60);
+        }
+      });
+  };
 
   useEffect(() => {
     let interValId;
@@ -108,7 +114,10 @@ function Signup() {
               {timer > 0 ? (
                 <p>Resend OTP in {formatTime(timer)}</p>
               ) : (
-                <p className="hover:text-red-500 hover:cursor-pointer" onClick={resendOTP} >
+                <p
+                  className="hover:text-red-500 hover:cursor-pointer"
+                  onClick={resendOTP}
+                >
                   Click here to resend otp
                 </p>
               )}
@@ -118,9 +127,14 @@ function Signup() {
       )}
 
       {!otp && (
-        <div className=" flex flex-col  justify-center">
-          <div className="max-w-[900px] w-ful mx-auto backdrop-blur-sm bg-white/30 shadow-2xl p-8 rounded-lg font-serif">
-            <p className="text-3xl font-bold ">Create Account</p>
+        <div className=" flex flex-col item-center justify-center">
+          <div className="max-w-[900px] w-ful mx-auto backdrop-blur-sm bg-white/30 shadow-2xl p-8 rounded-lg font-serif ">
+            <div className="flex item-center justify-between">
+              <p className="text-xl font-bold mb-2 text-center">
+                Create Account
+              </p>
+             
+            </div>
             <div className="formInput mb-2 flex flex-col w-72 ">
               <label htmlFor="">First name</label>
               <input

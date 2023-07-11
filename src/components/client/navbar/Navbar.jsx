@@ -8,6 +8,7 @@ import GetCookie from "../../../helper/getCookie";
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import {CgProfile} from 'react-icons/cg'
 
 
 
@@ -25,7 +26,7 @@ function Navbar() {
   const navigate  = useNavigate()
   const { name } = useSelector((state) => state.user);
   return (
-    <Disclosure as="nav" className="bg-white shadow-lg sticky top-0 ">
+    <Disclosure as="nav" className="bg-white shadow-lg sticky top-0 z-10 ">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 ">
@@ -44,7 +45,7 @@ function Navbar() {
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
                   <img
-                    className="block h-16 w-auto lg:hidden"
+                    className="block h-auto md:h-16 w-36 md:w-auto lg:hidden"
                     src={icon}
                     alt="Your Company"
                   />
@@ -84,13 +85,14 @@ function Navbar() {
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    {name &&<Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    {name &&<Menu.Button className="flex rounded-full bg-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">Open user menu</span>
-                      <img
+                      {/* <img
                         className="h-8 w-8 rounded-full"
                         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                         alt=""
-                      />
+                      /> */}
+                      <CgProfile className='h-8 w-8 rounded-full' />
                     </Menu.Button>}
                     {!name && <button className='p-2 bg-gray-700 rounded-lg' onClick={()=>navigate('/login')}>LogIn</button>}
                   </div>

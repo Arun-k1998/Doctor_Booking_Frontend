@@ -6,6 +6,7 @@ import Home from '../pages/client/Home'
 import { HomeVerification } from '../Authentication/user/HomeAuthentication'
 import { Authorization } from '../Authentication/user/userAuthentication'
 
+
 function user() {
   return (
    <div>

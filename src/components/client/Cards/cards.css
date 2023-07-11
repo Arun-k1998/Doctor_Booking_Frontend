@@ -14,8 +14,8 @@ button {
   }
   
   button:focus,
-  button:hover {
-    color: #fff;
+  .update_button:hover {
+    color: #0b9235;
   }
   
   button:focus:after,
@@ -24,7 +24,7 @@ button {
     left: 0%;
   }
   
-  button:after {
+  .update_button:after {
     content: "";
     pointer-events: none;
     bottom: -2px;
@@ -32,10 +32,16 @@ button {
     position: absolute;
     width: 0%;
     height: 2px;
-    background-color: #fff;
+    background-color: #0b9235;
     transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
     transition-duration: 400ms;
     transition-property: width, left;
   }
 
+  .horizontal_scroll::-webkit-scrollbar{ 
+    
+  }
+  .Specialities{
+    font-family: 'Poppins',sans-serif;
+  }
   

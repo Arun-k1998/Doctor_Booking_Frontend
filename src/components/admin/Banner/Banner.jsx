@@ -8,17 +8,23 @@ function Banner() {
   const [banner, setBanner] = useState([]);
   const [confrimation,setConfirmation] = useState(false)
   const [bannerId,setBannerId] = useState('')
+  const [fetch,setFetch] = useState(false)
 
   const handleDelete = ()=>{
-    
+    console.log('delete');
+    console.log(bannerId);
     adminApi.delete('/banner',{data:{id:bannerId}}).then((response)=>{
       if(response.data.status){
-        alert(response.data.message)
+        setFetch(!fetch)
+        navigate('/admin/banner')
+        
       }
     })
+    setConfirmation(false)
 
   }
   const deleteClick = (id)=>{
+    console.log(id);
     setBannerId(id)
     setConfirmation(true)
   }
@@ -29,7 +35,7 @@ function Banner() {
       let newData = response.data.banners.map((bannerdoc) => bannerdoc);
       setBanner([...newData]);
     });
-  }, []);
+  }, [fetch]);
   return (
     <div className="flex flex-col bg-sky-50 w-full relative">
       <button
@@ -38,7 +44,7 @@ function Banner() {
       >
         Create Banner
       </button>
-      <div className="mt-36 ml-20 flex grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+      <div className="mt-36 ml-20 flex grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-center">
         {banner.map((data, index) => {
           return (
             <div
@@ -53,8 +59,8 @@ function Banner() {
               <h1>{data.title}</h1>
               <p>{data.description}</p>
               <div className="flex justify-center flex-col w-full ">
-                <button className="bg-sky-500 p-2 rounded-lg mt-3 hidden sm:block" onClick={deleteClick} >Delete</button>
-                <button className="bg-sky-500 p-2 rounded-lg mt-3 hidden sm:block">Update</button>
+                <button className="bg-sky-500 p-2 rounded-lg mt-3 hidden sm:block" onClick={()=>deleteClick(data._id)} >Delete</button>
+                <button className="bg-sky-500 p-2 rounded-lg mt-3 hidden sm:block" onClick={()=> navigate(`/admin/banner_u/${data._id}`)}>Update</button>
                 <button  className="bg-sky-500 p-2 rounded-lg mt-3 block sm:hidden flex justify-center"><MdOutlineDelete /></button>
                 <button className="bg-sky-500 p-2 rounded-lg mt-3 block sm:hidden flex justify-center"> <GrUpdate /></button>
               </div>
@@ -62,7 +68,7 @@ function Banner() {
           );
         })}
       </div>
-      <div className="fixed inset-0 bg-black opacity-30 flex justify-center items-center flex-col ">
+      {confrimation && <div className="fixed inset-0 bg-transparent  backdrop-blur-sm  flex justify-center items-center flex-col ">
         <div className="bg-white rounded-lg p-10 flex flex-col justify-center items-center  ">
           <div >
           <h1>Delete</h1>
@@ -71,12 +77,12 @@ function Banner() {
             <p>Are you Sure You want to delete</p>
           </div>
           <div className="mt-3">
-            <button className="bg-red-600 text-white rounded-lg px-4 py-2" onClick={()=> handleDelete()}>Confirm</button>
-            <button className="bg-red-600 text-white rounded-lg px-4 py-2 ml-4" onClick={()=> setBannerId(false)} >Cancel</button>
+            <button className="bg-red-600 text-white rounded-lg px-4 py-2" onClick={handleDelete}>Confirm</button>
+            <button className="bg-green-700 text-white rounded-lg px-4 py-2 ml-4" onClick={()=> setConfirmation(false)} >Cancel</button>
           </div>
           
         </div>
-      </div>
+      </div>}
     </div>
   );
 }
