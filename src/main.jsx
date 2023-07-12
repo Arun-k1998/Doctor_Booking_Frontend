@@ -1,21 +1,21 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import { BrowserRouter } from 'react-router-dom'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import { BrowserRouter } from "react-router-dom";
 
-import { Provider } from 'react-redux'
-import store from './redux/store.jsx'
+import { Provider } from "react-redux";
+import store from "./redux/store.jsx";
 // import {UserContest} from './helper/contest/UserContest.jsx'
-import './index.css'
+import "./index.css";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     {/* <UserContest> */}
-    <Provider store={store} >
-    <BrowserRouter>
-    <App />
-    </BrowserRouter>
-    </ Provider >
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
     {/* </UserContest> */}
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);

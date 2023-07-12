@@ -4,7 +4,7 @@ import { adminApi } from "../../../helper/axios/adminAxios";
 import { useState } from "react";
 import bannerPreview from '../../../assets/bannerPreview.jpg'
 function BannerCreatoin() {
-  const [title, setTitle] = useState("");
+  const [name, setname] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [banner,setBanner] = React.useState(false)
@@ -17,7 +17,7 @@ function BannerCreatoin() {
   const handleSubmit = () => {
     const form = new FormData();
     form.append("image", image);
-    form.append("title", title);
+    form.append("name", name);
     form.append("description", description);
 
     adminApi
@@ -37,10 +37,10 @@ function BannerCreatoin() {
       <div className="flex flex-col h-full">
         <input
           type="text"
-          placeholder="Title"
+          placeholder="name"
           className="p-4 mt-4 shadow-lg rounded-lg "
-          onChange={(e) => setTitle(e.target.value)}
-          value={title}
+          onChange={(e) => setname(e.target.value)}
+          value={name}
         />
         <input
           type="file"

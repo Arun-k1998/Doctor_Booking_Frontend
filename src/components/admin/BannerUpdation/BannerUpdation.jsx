@@ -4,20 +4,20 @@ import { adminApi } from '../../../helper/axios/adminAxios'
 function BannerUpdation() {
     const navigate = useNavigate()    
     const [banner,setBanner] = useState(false)
-    const [title,setTitle] = useState('')
+    const [name,setname] = useState('')
     const [description,setDescription] = useState('')
     const [image,setImage] = useState('')
     const {id} = useParams()
     const initialValues = {
-        title:"",
+        name:"",
         description:"",
         image:"",
     }
-    const [formValues,setFormValues]= useState(initialValues)
+    // const [formValues,setFormValues]= useState(initialValues)
 
     const handleSubmit = ()=>{
         const form = new FormData()
-        form.append('title',title)
+        form.append('name',name)
         form.append('description',description)
         form.append('image',image)
         form.append('_id',id)
@@ -36,7 +36,7 @@ function BannerUpdation() {
     useEffect(()=>{
         adminApi.get(`/banner_u/${id}`).then((response)=>{
             if(response.data.status){
-               setTitle(response.data.banner.title)
+               setname(response.data.banner.name)
                setDescription(response.data.banner.description)
                setImage(response.data.banner.image)
             }
@@ -48,10 +48,10 @@ function BannerUpdation() {
       <div className="flex flex-col h-full">
         <input
           type="text"
-          placeholder="Title"
+          placeholder="name"
           className="p-4 mt-4 shadow-lg rounded-lg "
-          value={title}
-          onChange={(e)=> setTitle(e.target.value)}
+          value={name}
+          onChange={(e)=> setname(e.target.value)}
        
         />
         <input

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { adminApi } from "../../../helper/axios/adminAxios";
 import {MdOutlineDelete} from 'react-icons/md'
 import {GrUpdate} from 'react-icons/gr'
+import CreateButton from "../buttons/CreateButton";
 function Banner() {
   const navigate = useNavigate();
   const [banner, setBanner] = useState([]);
@@ -38,12 +39,7 @@ function Banner() {
   }, [fetch]);
   return (
     <div className="flex flex-col bg-sky-50 w-full relative">
-      <button
-        className="bg-gradient-to-r from-cyan-500 to-blue-500 p-2 rounded-2xl absolute right-20  top-10"
-        onClick={() => navigate("/admin/create_banner")}
-      >
-        Create Banner
-      </button>
+      <CreateButton content='banner' path="/admin/create_banner"  />
       <div className="mt-36 ml-20 flex grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-center">
         {banner.map((data, index) => {
           return (
@@ -56,7 +52,7 @@ function Banner() {
                 src={`http://localhost:4001/images/${data.image}`}
                 alt=""
               />
-              <h1>{data.title}</h1>
+              <h1>{data.name}</h1>
               <p>{data.description}</p>
               <div className="flex justify-center flex-col w-full ">
                 <button className="bg-sky-500 p-2 rounded-lg mt-3 hidden sm:block" onClick={()=>deleteClick(data._id)} >Delete</button>

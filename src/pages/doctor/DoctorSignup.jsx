@@ -1,11 +1,11 @@
 import React from 'react'
-
-function DoctorSignup() {
+import DoctorSignup from '../../components/doctor/Signup/DoctorSignup'
+function DoctorSignupPage() {
   return (
     <div>
-      
+      <DoctorSignup />
     </div>
   )
 }
 
-export default DoctorSignup
+export default DoctorSignupPage

@@ -40,10 +40,10 @@ function Sidebar() {
       </div>
       <div
         className="h-14 flex items-center justify-center  pl-4 md:justify-start text-sm lg:text-lg cursor-pointer hover:bg-sky-800"
-        onClick={()=> navigate('/admin/banner')}
+        onClick={()=> navigate('/admin/specialization')}
       >
         
-        <p className="hidden md:block">specialization</p>
+        <p className="hidden md:block" >specialization</p>
       </div>
  
     </div>

@@ -6,6 +6,8 @@ import BannerUpload from '../pages/admin/BannerUpload'
 import AdminVerification from '../Authentication/admin/adminAuthentication'
 import AdminDashboard from '../pages/admin/Dashboard'
 import BannerUpdatePage from '../pages/admin/BannerUpdatePage'
+import SpecializationManagement from '../pages/admin/SpecializationManagement'
+import SpecializationUpload from '../pages/admin/SpecializationUpload'
 
 function AdminRoute() {
   return (
@@ -14,8 +16,11 @@ function AdminRoute() {
       <Route element={ <AdminVerification accessBy={'non-Authorized'}><AdminLogin /> </AdminVerification>} path='/login' />
         <Route element={ <AdminVerification accessBy={'Authorized'}> <AdminDashboard /> </AdminVerification>} path='/dashboard' />
         <Route element={<Bannerpage />} path='/banner' />
+        <Route element={<SpecializationManagement />} path='specialization' />
         <Route element={<BannerUpload />} path='/create_banner' />
         <Route element={<BannerUpdatePage />} path='/banner_u/:id' />
+        <Route element={<SpecializationUpload />} path='/c_specialization' />
+        
       </Routes>
     </>
   )
