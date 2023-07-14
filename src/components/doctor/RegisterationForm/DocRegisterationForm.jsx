@@ -61,7 +61,7 @@ function DocRegisterationForm() {
 
   return (
     <div className="p-10 bg-slate-200">
-      <div className="mx-auto bg-slate-300 p-5 ">
+      <div className="mx-auto bg-white rounded-lg p-5 ">
         <div className="grid grid-cols-[2fr_8fr]">
           <div className="rounded-full overflow-hidden ">
             <img
@@ -98,46 +98,52 @@ function DocRegisterationForm() {
 
         <hr className="my-4" />
         <div>
-          <div>
-            <div className="">
+          <div className="grid grid-cols-2">
+            <div className="w-full">
               <div>
                 <h2>Registeraton Details</h2>
-                <div>
+                
+                <div className="grid grid-cols-3">
                   <label htmlFor="">Register Number</label>
                   <input
                     type="text"
                     onChange={(e) => inputChange(e)}
                     value={formValues.registerNumber}
                     name="registerNumber"
+                    className="border-2 p-1 mb-2"
                   />
                 </div>
-              </div>
-              <div>
+              
+              <div className="grid grid-cols-3">
                 <label htmlFor="">Counsil Name</label>
                 <input
                   type="text"
                   onChange={(e) => inputChange(e)}
                   value={formValues.counsilName}
                   name="counsilName"
+                  className="border-2 p-1 mb-2"
                 />
               </div>
-              <div>
+              <div className="grid grid-cols-3">
                 <label htmlFor="">Year of Registeration</label>
                 <input
                   type="date"
                   onChange={(e) => inputChange(e)}
                   value={formValues.yearOfRegisteration}
                   name="yearOfRegisteration"
+                  className="border-2 p-1 mb-2 "
                 />
               </div>
             </div>
             <hr className="my-4 " />
 
-            <div>
+            <div className="grid grid-cols-3" >
+              <label htmlFor="">Specialization</label>
               <select
                 name="specialization"
                 onChange={(e) => inputChange(e)}
                 id=""
+                className="border-2 p-1 mb-2 "
               >
                 <option value="">Specialization</option>
                 {specialization.map((Specialization) => {
@@ -149,60 +155,76 @@ function DocRegisterationForm() {
                 })}
               </select>
             </div>
-            <div>
+            <div className="grid grid-cols-3">
               <label htmlFor="">Age</label>
               <input
                 type="number"
                 onChange={(e) => inputChange(e)}
                 value={formValues.Age}
                 name="Age"
+                className="border-2 p-1 mb-2 "
               />
             </div>
-            <div>
+            <div className="grid grid-cols-3">
               <label htmlFor="">Langauges Known</label>
-              <input type="text" onChange={(e) => inputChange(e)} name="languages" />
+              <input type="text" onChange={(e) => inputChange(e)} name="languages" className="border-2 p-1 mb-2" />
             </div>
             <div>
               <div>
                 <h2>Experiences</h2>
               </div>
-              {specializationField.map((ele, index) => {
+              <div>
+
+
+              </div>
+              {experience.map((ele, index) => {
                 return (
-                  <div key={index}>
-                    <div>
+                  <div key={index} className="flex " >
+                    <div className="">
                       <label htmlFor="">Hostpital</label>
                       <input
                         type="text"
                         name="hospital"
                         onChange={(e) => onChangeExperience(e, index)}
+                        className="border-2 p-1 mb-2 "
                       />
                     </div>
 
-                    <div>
+                    <div className="">
                       <label htmlFor="">From</label>
                       <input
                         type="date"
                         name="from"
                         onChange={(e) => onChangeExperience(e, index)}
+                        className="border-2 p-1 mb-2"
+
                       />
                     </div>
-                    <div>
+                    <div className="" >
                       <label htmlFor="">to</label>
                       <input
                         type="date"
                         name="to"
                         onChange={(e) => onChangeExperience(e, index)}
+                        className="border-2 p-1 mb-2"
                       />
                     </div>
                   </div>
                 );
               })}
             </div>
+          <button onClick={addMore} className="bg-lime-500 p-2" >Add More</button>
+
           </div>
-          <button onClick={handleSubmit} className="bg-white p-2">
+          
+        </div>
+        <div className="w-full flex justify-center ">
+        <button onClick={handleSubmit} className="bg-white p-2">
             {" "}
             Submit{" "}
           </button>
+        </div>
+        
         </div>
       </div>
     </div>
