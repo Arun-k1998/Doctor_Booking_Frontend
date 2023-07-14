@@ -22,7 +22,7 @@ function Specialization() {
       <CreateButton content='Specilization' path="/admin/c_specialization"  />
       <div className="mt-36 mx-20 flex grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-center">
        {
-        data.length > 0 ?  data.map((data,index)=> <Card key={index} data={data} updatePath={updatePath}  /> )   : <p>No content</p>
+        data.length > 0 ?  data.map((data,index)=> <Card key={index} data={data} updatePath={updatePath}   /> )   : <p>No content</p>
        }
       </div>
       {/* {confrimation && <div className="fixed inset-0 bg-transparent  backdrop-blur-sm  flex justify-center items-center flex-col ">

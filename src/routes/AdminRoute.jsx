@@ -8,6 +8,8 @@ import AdminDashboard from '../pages/admin/Dashboard'
 import BannerUpdatePage from '../pages/admin/BannerUpdatePage'
 import SpecializationManagement from '../pages/admin/SpecializationManagement'
 import SpecializationUpload from '../pages/admin/SpecializationUpload'
+import DoctorApplicatoins from '../pages/admin/DoctorApplicatoins'
+import DoctorApproval from '../pages/admin/DoctorApproval'
 
 function AdminRoute() {
   return (
@@ -20,7 +22,8 @@ function AdminRoute() {
         <Route element={<BannerUpload />} path='/create_banner' />
         <Route element={<BannerUpdatePage />} path='/banner_u/:id' />
         <Route element={<SpecializationUpload />} path='/c_specialization' />
-        
+        <Route element={<DoctorApplicatoins />} path='/applications' />
+        <Route element={<DoctorApproval />} path='/dr_approval' />
       </Routes>
     </>
   )

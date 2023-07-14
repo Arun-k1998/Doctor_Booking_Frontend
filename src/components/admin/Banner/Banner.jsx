@@ -4,6 +4,7 @@ import { adminApi } from "../../../helper/axios/adminAxios";
 import {MdOutlineDelete} from 'react-icons/md'
 import {GrUpdate} from 'react-icons/gr'
 import CreateButton from "../buttons/CreateButton";
+import Card from "../Cards/Card";
 function Banner() {
   const navigate = useNavigate();
   const [banner, setBanner] = useState([]);
@@ -43,24 +44,25 @@ function Banner() {
       <div className="mt-36 ml-20 flex grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-center">
         {banner.map((data, index) => {
           return (
-            <div
-              className="rounded-xl bg-white w-full truncate p-2 shadow-lg"
-              key={index}
-            >
-              <img
-                className=" bg-fit rounded-xl"
-                src={`http://localhost:4001/images/${data.image}`}
-                alt=""
-              />
-              <h1>{data.name}</h1>
-              <p>{data.description}</p>
-              <div className="flex justify-center flex-col w-full ">
-                <button className="bg-sky-500 p-2 rounded-lg mt-3 hidden sm:block" onClick={()=>deleteClick(data._id)} >Delete</button>
-                <button className="bg-sky-500 p-2 rounded-lg mt-3 hidden sm:block" onClick={()=> navigate(`/admin/banner_u/${data._id}`)}>Update</button>
-                <button  className="bg-sky-500 p-2 rounded-lg mt-3 block sm:hidden flex justify-center"><MdOutlineDelete /></button>
-                <button className="bg-sky-500 p-2 rounded-lg mt-3 block sm:hidden flex justify-center"> <GrUpdate /></button>
-              </div>
-            </div>
+            <Card key={index} data={data} updatePath={'/admin/banner_u/'} deleteClick={deleteClick}  />
+            // <div
+            //   className="rounded-xl bg-white w-full truncate p-2 shadow-lg"
+            //   key={index}
+            // >
+            //   <img
+            //     className=" bg-fit rounded-xl"
+            //     src={`http://localhost:4001/images/${data.image}`}
+            //     alt=""
+            //   />
+            //   <h1>{data.name}</h1>
+            //   <p>{data.description}</p>
+            //   <div className="flex justify-center flex-col w-full ">
+            //     <button className="bg-sky-500 p-2 rounded-lg mt-3 hidden sm:block" onClick={()=>deleteClick(data._id)} >Delete</button>
+            //     <button className="bg-sky-500 p-2 rounded-lg mt-3 hidden sm:block" onClick={()=> navigate(`/admin/banner_u/${data._id}`)}>Update</button>
+            //     <button  className="bg-sky-500 p-2 rounded-lg mt-3 block sm:hidden flex justify-center"><MdOutlineDelete /></button>
+            //     <button className="bg-sky-500 p-2 rounded-lg mt-3 block sm:hidden flex justify-center"> <GrUpdate /></button>
+            //   </div>
+            // </div>
           );
         })}
       </div>

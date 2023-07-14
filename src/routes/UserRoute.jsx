@@ -11,9 +11,11 @@ function user() {
   return (
    <div>
       <Routes >
+        
         <Route element={ <HomeVerification > <Home /> </ HomeVerification>} path='/' />
         <Route element={<Authorization accessBy={'non-Authorized'}> <UserLogin /> </ Authorization>} path='/login' />
         <Route element={<Authorization accessBy={'non-Authorized'}> <Register /> </ Authorization>} path='/signup' />
+
       </Routes>
       </div>
   )

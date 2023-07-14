@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import validation from "../../../helper/formValidation";
-import api from "../../../helper/axios/userAxios";
 import { useNavigate } from "react-router-dom";
+import { doctorApi } from "../../../helper/axios/doctorAxios";
 
 function DoctorSignup() {
   const initialValues = {
@@ -33,7 +33,7 @@ function DoctorSignup() {
   };
 
   const otpSubmit = () => {
-    api.post("/verify_otp", { ...formValues }).then((response) => {
+    doctorApi.post("verify_otp", { ...formValues }).then((response) => {
       if (response.data.status) {
         navigate("/");
       }
@@ -41,7 +41,7 @@ function DoctorSignup() {
   };
 
   const resendOTP = () => {
-    api
+    doctorApi
       .post("/resendotp", {
         phoneNumber: formValues.phoneNumber,
         country_code: formValues.country_code,
@@ -57,7 +57,7 @@ function DoctorSignup() {
   useEffect(() => {
     let interValId;
     if (Object.keys(formError).length === 0 && submit) {
-      api
+      doctorApi
         .post("/signup", {
           ...formValues,
           country_code: formValues.country_code,

@@ -3,7 +3,7 @@ import { MdOutlineDelete } from "react-icons/md";
 import { GrUpdate } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
 
-function Card({ data, updatePath }) {
+function Card({ data, updatePath,deleteClick }) {
   const navigate = useNavigate();
   const truncateString = (string,length)=>{
     if(string.length <= length){
@@ -32,7 +32,7 @@ function Card({ data, updatePath }) {
           </button>
           <button
             className="bg-sky-500 p-2 rounded-lg mt-3 hidden sm:block"
-            onClick={() => navigate(updatePath)}
+            onClick={() => navigate(`${updatePath}${data._id}`)}
           >
             Update
           </button>
