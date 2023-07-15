@@ -16,6 +16,7 @@ function DocRegisterationForm() {
     yearOfRegisteration: "",
     specialization: "",
     Age: "",
+    image:''
   };
   const [formValues, setFormValues] = useState(initialValues);
 
@@ -30,6 +31,13 @@ function DocRegisterationForm() {
     setExperience([...experience, {}]);
   };
 
+  const imageChange = (e)=>{
+    const {name} = e.target
+    const image = e.target.files[0]
+    setFormValues({...formValues,[name]:image})
+    console.log(formValues);
+  }
+
   const onChangeExperience = (e, index) => {
     const { name, value } = e.target;
     const spec = [...experience];
@@ -40,8 +48,17 @@ function DocRegisterationForm() {
 
   const handleSubmit = () => {
     alert("here");
+    const form = new FormData()
+    form.append('formValues',JSON.stringify(formValues))
+    form.append('image',formValues.image)
+    form.append('experience',JSON.stringify(experience))
+    console.log(form);
     doctorApi
-      .post("/register", { formValues: formValues, experience: experience })
+      .post("/register",form,{
+        headers: {
+          "content-type": "multipart/form-data",
+        }
+      })
       .then((response) => {
         if (response.data.status) {
           alert(response.data.message);
@@ -63,16 +80,16 @@ function DocRegisterationForm() {
     <div className="p-10 bg-slate-200">
       <div className="mx-auto bg-white rounded-lg p-5 ">
         <div className="grid grid-cols-[2fr_8fr]">
-          <div className="rounded-full overflow-hidden ">
+          <div className="rounded-full overflow-hidden relative h-60 w-auto flex justify-center">
             <img
-              src="https://www.befunky.com/images/prismic/1f427434-7ca0-46b2-b5d1-7d31843859b6_funky-focus-red-flower-field-after.jpeg?auto=avif,webp&format=jpg&width=863"
+              src={formValues.image ? URL.createObjectURL(formValues.image) : ""}
               alt=""
-              className=" "
+              className="h-full  rounded-full w-full"
             />
-            {/* <div>
-            <button className="bg-red-700">add</button>
+            <div className="absolute bottom-0 left-10 rounded-full overflow-hidden">
+            <input className="bg-amber-200 " name="image"  onChange={imageChange} type="file"/>
 
-            </div> */}
+            </div>
           </div>
           <div className="flex flex-col  ml-40 w-1/2">
             <div className="flex grid grid-cols-3">
@@ -101,10 +118,10 @@ function DocRegisterationForm() {
           <div className="grid grid-cols-2">
             <div className="w-full">
               <div>
-                <h2>Registeraton Details</h2>
+                <h2 className=" mb-4 underline underline-offset-8 " >Registeraton Details</h2>
                 
                 <div className="grid grid-cols-3">
-                  <label htmlFor="">Register Number</label>
+                  <label htmlFor="">Register Number <span className="text-red-600">*</span> </label>
                   <input
                     type="text"
                     onChange={(e) => inputChange(e)}
@@ -115,7 +132,7 @@ function DocRegisterationForm() {
                 </div>
               
               <div className="grid grid-cols-3">
-                <label htmlFor="">Counsil Name</label>
+                <label htmlFor="">Counsil Name <span className="text-red-600">*</span></label>
                 <input
                   type="text"
                   onChange={(e) => inputChange(e)}
@@ -125,7 +142,7 @@ function DocRegisterationForm() {
                 />
               </div>
               <div className="grid grid-cols-3">
-                <label htmlFor="">Year of Registeration</label>
+                <label htmlFor="">Year of Registeration <span className="text-red-600">*</span></label>
                 <input
                   type="date"
                   onChange={(e) => inputChange(e)}
@@ -138,7 +155,7 @@ function DocRegisterationForm() {
             <hr className="my-4 " />
 
             <div className="grid grid-cols-3" >
-              <label htmlFor="">Specialization</label>
+              <label htmlFor="">Specialization <span className="text-red-600">*</span></label>
               <select
                 name="specialization"
                 onChange={(e) => inputChange(e)}
@@ -171,7 +188,7 @@ function DocRegisterationForm() {
             </div>
             <div>
               <div>
-                <h2>Experiences</h2>
+                <h2 className="mb-4 underline underline-offset-8" >Experiences</h2>
               </div>
               <div>
 
@@ -181,7 +198,7 @@ function DocRegisterationForm() {
                 return (
                   <div key={index} className="flex " >
                     <div className="">
-                      <label htmlFor="">Hostpital</label>
+                      <label htmlFor="">Hostpital <span className="text-red-600">*</span></label>
                       <input
                         type="text"
                         name="hospital"
@@ -191,7 +208,7 @@ function DocRegisterationForm() {
                     </div>
 
                     <div className="">
-                      <label htmlFor="">From</label>
+                      <label htmlFor="">From <span className="text-red-600">*</span></label>
                       <input
                         type="date"
                         name="from"
@@ -201,7 +218,7 @@ function DocRegisterationForm() {
                       />
                     </div>
                     <div className="" >
-                      <label htmlFor="">to</label>
+                      <label htmlFor="">to <span className="text-red-600">*</span></label>
                       <input
                         type="date"
                         name="to"
@@ -219,7 +236,7 @@ function DocRegisterationForm() {
           
         </div>
         <div className="w-full flex justify-center ">
-        <button onClick={handleSubmit} className="bg-white p-2">
+        <button onClick={handleSubmit} className="bg-red-500 p-2">
             {" "}
             Submit{" "}
           </button>

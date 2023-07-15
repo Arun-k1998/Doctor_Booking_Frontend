@@ -3,16 +3,16 @@ import { adminApi } from "../../../helper/axios/adminAxios";
 import { useNavigate } from "react-router-dom";
 
 function DrApplications() {
-    const [navigate,setNavigate] = useNavigate()
-    const [doctors,setDoctors] = useState([{}])
-    useEffect(()=>{
-        adminApi.get('/doctors').then((response)=>{
-            if(response.data.status){
-                console.log(response.data.doctors);
-                setDoctors([...response.data.doctors])
-            }
-        })
-    },[])
+  const navigate = useNavigate();
+  const [doctors, setDoctors] = useState([{}]);
+  useEffect(() => {
+    adminApi.get("/doctors").then((response) => {
+      if (response.data.status) {
+        console.log(response.data.doctors);
+        setDoctors([...response.data.doctors]);
+      }
+    });
+  }, []);
   return (
     <div className="p-4 mt-10">
       <div className="relative overflow-x-auto">
@@ -37,19 +37,24 @@ function DrApplications() {
             </tr>
           </thead>
           <tbody>
-
-            <tr className="bg-white border-b bg-[#a0d6db] dark:border-gray-700 ">
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                Apple MacBook Pro 17"
-              </th>
-              <td className="px-6 py-4">Silver</td>
-              <td className="px-6 py-4">Laptop</td>
-              <td className="px-6 py-4">$2999</td>
-              <td className="px-6 py-4" onClick={()=> navigate('/admin/dr_approval')}>More</td>
-            </tr>
+            {doctors.map((doctor,index) => {
+              return (
+                <>
+                  <tr className="bg-white border-b bg-[#a0d6db] dark:border-gray-700 " key={index}>
+                    <td className="px-6 py-4">{index+1}</td>
+                    <td className="px-6 py-4">{`${doctor.firstName} ${doctor.lastName}`}</td>
+                    <td className="px-6 py-4">{doctor.councilName}</td>
+                    <td className="px-6 py-4">{doctor.registerNumber}</td>
+                    <td
+                      className="px-6 py-4 cursor-pointer underline underline-offset-2"
+                      onClick={() => navigate("/admin/dr_approval")}
+                    >
+                      More
+                    </td>
+                  </tr>
+                </>
+              );
+            })}
           </tbody>
         </table>
       </div>

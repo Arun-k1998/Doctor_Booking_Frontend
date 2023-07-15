@@ -25,7 +25,7 @@ function Sidebar() {
       </div>
       <div className="h-14 flex items-center justify-center text-sm lg:text-lg pl-4 md:justify-start hover:bg-sky-800">
         <MdOutlineSettingsApplications className="mr-1" />
-        <p className="hidden md:block">Dr Applications</p>
+        <p className="hidden md:block" onClick={()=> navigate('/admin/applications')}>Dr Applications</p>
       </div>
       <div className="h-14 flex items-center justify-center  pl-4 md:justify-start text-sm lg:text-lg hover:bg-sky-800">
         <RiCalendarTodoFill className="mr-1" />
